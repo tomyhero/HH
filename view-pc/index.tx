@@ -33,9 +33,9 @@ body {
 
       <div class="content">
         <div class="hero-unit">
-          <h1>URLを入力</h1>
-          <form method="get">
-            <input type="text" style="width:500px;"> <input type="submit" value="解析" />
+          <h2>URLを入力</h2>
+          <form method="post" action="/analyze">
+            <input name="url" type="text" class="span8"> <input type="submit" value="解析" class="btn" />
           </form>
           <p> HTML headセクションをを解析します </p>
         </div>

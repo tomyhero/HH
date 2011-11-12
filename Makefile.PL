@@ -5,6 +5,9 @@ all_from 'lib/HH.pm';
 
 requires (
     'Ze' => 0,
+    'FormValidator::LazyWay' => 0,
+    'Data::Section::Simple' => 0,
+    'Aplon' => 0,
 );
 
 
