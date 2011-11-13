@@ -1,7 +1,6 @@
 package HH::Analyzer::Result;
 use Ze::Class;
 use JSON::XS();
-use UTF8;
 
 has 'url' => ( is => 'rw');
 has 'head_html' => ( is => 'rw' );
