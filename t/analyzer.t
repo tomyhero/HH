@@ -4,8 +4,10 @@ use_ok('HH::Analyzer');
 
 my $analyzer = HH::Analyzer->new();
 
-$analyzer->analyze('http://blogos.com/');
+my $res = $analyzer->analyze('http://blogos.com/');
+#$analyzer->analyze('http://yahoo.co.jp/');
 
+isa_ok($res,'HH::Analyzer::Result');
 
 
 done_testing();
