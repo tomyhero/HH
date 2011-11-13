@@ -6,7 +6,8 @@ use Ze::View;
 
 sub _build_engine {
     my $self = shift;
-    my $path = HH::Home->get()->subdir('view-pc');
+    my $path = [ HH::Home->get()->subdir('view-pc') , HH::Home->get()->subdir('view-pc/include') ];
+
     return Ze::View->new(
         engines => [
             { engine => 'Ze::View::Xslate' , config => { path => $path } }, 

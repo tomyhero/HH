@@ -8,10 +8,9 @@ sub index {
 
 sub analyze {
     my ($self,$c) = @_;
-    $c->redirect('/'); # XXX model errorの際の対応
+    $c->stash->{VIEW_TEMPLATE} = 'index';
 
     $c->model('Head')->analyze( $c->req->as_fdat );
-
 
 
 

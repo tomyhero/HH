@@ -14,7 +14,8 @@
 
 <style type="text/css">
 body {
-    padding-top: 60px;
+    padding : 60px;
+
 }
 </style>
 
@@ -31,9 +32,10 @@ body {
       </div>
     </div>
 
+
       <div class="content">
-        <div class="hero-unit">
           <h2>URLを入力</h2>
+          [% INCLUDE 'error.inc' %]
           <form method="post" action="/analyze">
             <input name="url" type="text" class="span8"> <input type="submit" value="解析" class="btn" />
           </form>
