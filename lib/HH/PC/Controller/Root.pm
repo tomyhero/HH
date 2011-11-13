@@ -19,7 +19,7 @@ sub do_index {
 
 sub detail {
     my ($self,$c) = @_;
-    $c->stash->{VIEW_TEMPLATE} = 'detail';
+    $c->template( 'detail');
     my $url = $c->args->{url};
 
 }
