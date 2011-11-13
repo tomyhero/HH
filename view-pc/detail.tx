@@ -1,0 +1,7 @@
+[% INCLUDE 'header.inc' %]
+
+      <div class="content">
+          <h2><a href="[% c.args.url %]" target="_blnak">[% c.args.url %]</a></h2>
+      </div>
+
+[% INCLUDE 'footer.inc' %]
