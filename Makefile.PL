@@ -9,6 +9,7 @@ requires (
     'Data::Section::Simple' => 0,
     'Aplon' => 0,
     'DBIx::Sunny' => 0,
+    'HTML::TreeBuilder::XPath' => 0,
 );
 
 
