@@ -9,6 +9,8 @@ create table page (
 create table head (
     page_id INTEGER not null ,
     version INTEGER NOT NULL ,
+    head_html TEXT NOT NULL ,
     attributes_dump TEXT NOT NULL,
+    created_at DATETIME,
     PRIMARY KEY (page_id,version)
 );

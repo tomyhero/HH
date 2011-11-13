@@ -10,7 +10,7 @@ sub analyze {
 
     my $response = $self->get_response( $url );
     my $content = $self->get_content( $response );
-    my $parser = HH::Analyzer::Parser->new();
+    my $parser = HH::Analyzer::Parser->new( url => $url );
     return $parser->parse($content);
 
 }

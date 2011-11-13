@@ -3,6 +3,7 @@ use Ze::Class;
 use HH::Analyzer::Result;
 use HTML::TreeBuilder::XPath;
 
+has 'url' => ( is => 'rw' , required => 1 );
 
 sub parse {
     my $self = shift;
@@ -13,7 +14,7 @@ sub parse {
     my $nodeset = $tree->findnodes('/html/head/*');
     my $head_html = $tree->findnodes_as_string('/html/head/*');
     my @nodes = $nodeset->get_nodelist;
-    my $result = HH::Analyzer::Result->new( head_html  => $head_html , nodes => \@nodes );
+    my $result = HH::Analyzer::Result->new( head_html  => $head_html , nodes => \@nodes  , url => $self->url );
 
     return $result;
 }

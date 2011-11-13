@@ -1,6 +1,9 @@
 package HH::Analyzer::Result;
 use Ze::Class;
+use JSON::XS();
+use UTF8;
 
+has 'url' => ( is => 'rw');
 has 'head_html' => ( is => 'rw' );
 has 'nodes' => ( is => 'rw' );
 has 'data' => ( is => 'rw' );
@@ -8,7 +11,7 @@ has 'data' => ( is => 'rw' );
 sub BUILD {
     my $self = shift;
     my $data = {};
-    $data->{static} = $self->build_static();
+    $data->{summary} = $self->build_summary();
     $data->{title}  = $self->build_title();
     $data->{base}   = $self->build_base();
     $data->{meta}   = $self->build_meta();
@@ -96,17 +99,21 @@ sub build_style {
 
 }
 
-sub build_static {
+sub build_summary {
     my $self = shift;
 
-    my $static = {};
+    my $summary = {};
     for(@{$self->nodes}){
-        $static->{$_->tag} ||= 0;
-        $static->{$_->tag}++;
+        $summary->{$_->tag} ||= 0;
+        $summary->{$_->tag}++;
     }
 
-    return $static;
+    return $summary;
 }
 
+sub to_json {
+    my $self = shift;
+    return  Encode::decode('utf8',JSON::XS::encode_json($self->data));
+}
 
 EOC;

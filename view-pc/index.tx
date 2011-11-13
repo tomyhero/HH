@@ -7,7 +7,6 @@
             <input name="url" type="text" class="span8"> <input type="submit" value="解析" class="btn" />
           </form>
           <p> HTML headセクションをを解析します </p>
-        </div>
       </div>
 
 [% INCLUDE 'footer.inc' %]

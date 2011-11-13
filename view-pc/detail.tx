@@ -1,7 +1,137 @@
 [% INCLUDE 'header.inc' %]
 
-      <div class="content">
+    <div class="row">
+    <div class="span20">
+    <div class="row">
+      <div class="content span12">
           <h2><a href="[% c.args.url %]" target="_blnak">[% c.args.url %]</a></h2>
+          <p>[% page.head.attributes.title.value || 'タイトルなし' %]</p>
+
+           <div class="span12">
+           <h3>利用タグ統計</h3>
+           <table class="zebra-striped">
+           <thead>
+           <tr>
+            <th>タグ名</th>
+            <th>利用数</th>
+           </tr>
+           </thead>
+           <tbody>
+            [% FOREACH key IN page.head.attributes.summary.keys() %]
+            <tr>
+                <td>[% key %]</td>
+                <td>[% page.head.attributes.summary.${key} %]</td>
+            </tr>
+            [% END %]
+            </tbody>
+            </table>
+           </div>
+
+
+           [% IF page.head.attributes.meta.size() %]
+           <div class="span12">
+           <h3>メタタグ一覧</h3>
+           <table class="zebra-striped">
+           <thead>
+            <tr>
+              <th>#</th>
+              <th>アトリビュート</th>
+              <th>値</th>
+            </tr>
+            </thead>
+            [% FOREACH item IN page.head.attributes.meta  %]
+              <tr>
+              <td rowspan="[% item.attr.keys().size()  %]">#[% loop.count %]</td>
+                [% FOREACH attr IN item.attr.keys() %]
+                [% UNLESS loop.count == 1 %]<tr>[% END %]
+                <td>[% attr %]</td>
+                <td>[% item.attr.${attr} %]</td>
+                </tr>
+                [% END %]
+            [% END %]
+            </table>
+            </div>
+            [% END %]
+
+            [% IF page.head.attributes.link.size() %]
+           <div class="span12">
+           <h3>リンクタグ一覧</h3>
+           <table class="zebra-striped">
+           <thead>
+            <tr>
+              <th>#</th>
+              <th>アトリビュート</th>
+              <th>値</th>
+            </tr>
+            </thead>
+            [% FOREACH item IN page.head.attributes.link %]
+              <tr>
+              <td rowspan="[% item.attr.keys().size()  %]">#[% loop.count %]</td>
+                [% FOREACH attr IN item.attr.keys() %]
+                [% UNLESS loop.count == 1 %]<tr>[% END %]
+                <td>[% attr %]</td>
+                <td>[% item.attr.${attr} %]</td>
+                </tr>
+                [% END %]
+            [% END %]
+            </table>
+            </div>
+            [% END %]
+
+            [% IF page.head.attributes.style.size() %]
+           <div class="span12">
+           <h3>スタイルタグ一覧</h3>
+           <table class="zebra-striped">
+           <thead>
+            <tr>
+              <th>#</th>
+              <th>アトリビュート</th>
+              <th>値</th>
+            </tr>
+            </thead>
+            [% FOREACH item IN page.head.attributes.style %]
+              <tr>
+              <td rowspan="[% item.attr.keys().size()  %]">#[% loop.count %]</td>
+                [% FOREACH attr IN item.attr.keys() %]
+                [% UNLESS loop.count == 1 %]<tr>[% END %]
+                <td>[% attr %]</td>
+                <td>[% item.attr.${attr} %]</td>
+                </tr>
+                [% END %]
+            [% END %]
+            </table>
+            </div>
+            [% END %] 
+
+            <div class="span12">
+            <h3>生headセクション</h3>
+            <p>
+            <span class="label important">Version</span> [% page.version %]
+            <span class="label notice">作成日時</span> [% page.head.created_at %] 
+            </p>
+            <pre>[% page.head.head_html %]</pre>
+            </div>
       </div>
+
+      <div class="span8">
+          <h3>URLを入力</h3>
+          <form method="post" action="/">
+            <input name="url" type="text" class="span5"> <input type="submit" value="解析" class="btn" />
+          </form>
+        </div>
+       <div class="span8">
+       <h3>新規解析URL</h3>
+       <ul>
+       [% FOREACH p IN pages %] 
+        <li><a href="/[% p.url | uri %]">[% p.url  %]</a></li>
+       [% END %]
+       </ul>
+
+
+       </div>
+
+    </div>
+    </div>
+    </div>
 
 [% INCLUDE 'footer.inc' %]

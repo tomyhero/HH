@@ -8,6 +8,7 @@ requires (
     'FormValidator::LazyWay' => 0,
     'Data::Section::Simple' => 0,
     'Aplon' => 0,
+    'DBIx::Sunny' => 0,
 );
 
 

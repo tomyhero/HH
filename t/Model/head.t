@@ -21,9 +21,14 @@ subtest 'requred' => sub {
 
 };
 
+my $res;
 subtest 'validate pass' => sub {
-    my $res = $model->analyze( { url => "http://blogos.com/" } );
+    $res = $model->analyze( { url => "http://blogos.com/" } );
     isa_ok($res,'HH::Analyzer::Result');
+};
+
+subtest 'save' => sub {
+    ok($model->save($res));
 };
 
 
