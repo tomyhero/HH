@@ -2,7 +2,7 @@ package HH::Analyzer;
 use Ze::Class;
 use HH::Analyzer::Parser;
 use LWP::UserAgent;
-use Aplon::Error;
+use HH::Validator::Error;
 
 sub analyze {
     my $self = shift;
@@ -34,7 +34,7 @@ sub get_response {
         return $response;
     }
     else {
-        my $error_obj = Aplon::Error->new();
+        my $error_obj = HH::Validator::Error->new();
         $error_obj->custom_invalid( [ 'GET_RESPONSE_ERROR' ]);
         die $error_obj;
     }

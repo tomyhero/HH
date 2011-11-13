@@ -11,9 +11,8 @@ sub EXCECUTE {
         $self->$action( $c );
     }
     catch {
-        if( ref $_ && ref $_ eq 'Aplon::Error') {
-            use Data::Dumper;
-            warn Dumper $_;
+        if( ref $_ && ref $_ eq 'HH::Validator::Error') {
+            $c->stash->{error_obj} = $_;
         }
         else {
             die $_; 

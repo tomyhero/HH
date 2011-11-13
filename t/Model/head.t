@@ -13,7 +13,7 @@ subtest 'requred' => sub {
     };
 
     if($@){
-        is(ref $@,'Aplon::Error');
+        is(ref $@,'HH::Validator::Error');
     }
     else {
         fail('ooops requred!');

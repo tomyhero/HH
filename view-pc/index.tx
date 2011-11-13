@@ -36,7 +36,7 @@ body {
       <div class="content">
           <h2>URLを入力</h2>
           [% INCLUDE 'error.inc' %]
-          <form method="post" action="/analyze">
+          <form method="post" action="/">
             <input name="url" type="text" class="span8"> <input type="submit" value="解析" class="btn" />
           </form>
           <p> HTML headセクションをを解析します </p>
