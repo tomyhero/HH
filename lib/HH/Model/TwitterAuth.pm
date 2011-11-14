@@ -14,7 +14,7 @@ has '+error_class' => (
 
 around 'oauth' => sub {
      my ($next, $self, $args) = @_;
-     $args->{callback_url} ||= 'http://localhost.dev:5000/auth/callback';
+     $args->{callback_url} ||= $self->config->get('twitter')->{callback_url} ;
      my $res = $self->$next($args);
     return $res;
 };
