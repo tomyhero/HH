@@ -2,7 +2,6 @@ package HH::Model::TwitterAuth;
 use Ze::Class;
 use Net::Twitter::Lite;
 use HH::DB;
-use Encode;
 
 extends 'Aplon::Model::OAuth::Consumer::Twitter';
 with 'HH::Role::Config';
@@ -44,11 +43,12 @@ sub do_complate {
     my $data = {
         icon_url => $res->{profile_image_url_https}, 
         name => $res->{name},
-        screen_name => Encode::decode('utf8',$res->{screen_name}),
+        screen_name => $res->{screen_name},
         twitter_user_id => $twitter_id,
         twitter_access_token => $access_token->token ,
         twitter_access_token_secret => $access_token->secret,       
     };
+
 
     my $dbh = HH::DB->get_dbh();
 
