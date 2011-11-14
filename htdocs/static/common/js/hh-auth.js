@@ -11,7 +11,7 @@ HHAUth = {
                     $('#container-profile-status').html( 
                           '<img style="vertical-align:middle;" src="' + json.item.icon_url + '" width="24" height="24" /><a href="http://twitter.com/'
                         + json.item.screen_name + '">'
-                        + json.item.name  + '</a> <a href="/auth/logout">ログアウト</a>'
+                        + json.item.name.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;')  + '</a> <a href="/auth/logout">ログアウト</a>'
                     ) ;
 
                         if(typeof ready_authorizer == "function") {
