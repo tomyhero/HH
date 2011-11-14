@@ -10,6 +10,10 @@ requires (
     'Aplon' => 0,
     'DBIx::Sunny' => 0,
     'HTML::TreeBuilder::XPath' => 0,
+    'Cache::Memcached::IronPlate' => 0,
+    'HTTP::Session' => 0,
+    'LWP::Protocol::https' => 0,
+    'Net::Twitter::Lite' => 0,
 );
 
 

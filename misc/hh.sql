@@ -14,3 +14,11 @@ create table head (
     created_at DATETIME,
     PRIMARY KEY (page_id,version)
 );
+
+create table member (
+    twitter_user_id INTEGER  NOT NULL PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    screen_name varchar(255) NOT NULL,
+    icon_url varchar(255) NOT NULL
+);
+

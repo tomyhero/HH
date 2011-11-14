@@ -9,4 +9,13 @@
           <p> HTML headセクションをを解析します </p>
       </div>
 
-[% INCLUDE 'footer.inc' %]
+
+[% MACRO footer_content_block  BLOCK -%]
+<script>
+
+</script>
+[% END -%]
+
+[% INCLUDE 'footer.inc' WITH
+    footer_content = footer_content_block()
+%]

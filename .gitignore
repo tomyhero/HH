@@ -12,3 +12,4 @@ MANIFEST.bak
 var
 *.DS_Store
 .carton
+etc/config_*

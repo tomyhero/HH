@@ -1,0 +1,11 @@
+<html>
+<head>
+<title>Close</title>
+</head>
+<body>
+処理中...
+<script>
+window.close();
+</script>
+</body>
+</html>
