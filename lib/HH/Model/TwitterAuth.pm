@@ -54,11 +54,12 @@ sub do_complate {
 
     my $user = $dbh->select_row('SELECT * FROM member WHERE twitter_user_id = ? ', $data->{twitter_user_id} );
     if(!$user){
-        $user = $dbh->query('INSERT INTO member (twitter_user_id,name,screen_name,icon_url) VALUES ( ?,?, ?, ?  )',$data->{twitter_user_id},$data->{name},$data->{screen_name},$data->{icon_url} );
+        $dbh->query('INSERT INTO member (twitter_user_id,name,screen_name,icon_url) VALUES ( ?,?, ?, ?  )',$data->{twitter_user_id},$data->{name},$data->{screen_name},$data->{icon_url} );
+        $user = $dbh->select_row('SELECT * FROM member WHERE twitter_user_id = ? ', $data->{twitter_user_id} );
     }
     else {
         $dbh->query('UPDATE member SET name = ?, screen_name = ?,icon_url = ?  WHERE twitter_user_id =  ? ',$data->{name},$data->{screen_name},$data->{icon_url} , $data->{twitter_user_id} );
-        $dbh->select_row('SELECT * FROM member WHERE twitter_user_id = ? ', $data->{twitter_user_id} );
+        $user = $dbh->select_row('SELECT * FROM member WHERE twitter_user_id = ? ', $data->{twitter_user_id} );
     }
     return $user;
 }
