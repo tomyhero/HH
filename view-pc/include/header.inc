@@ -25,7 +25,7 @@ body {
       <div class="topbar-inner">
         <div class="container-fluid">
           <a class="brand" href="/">HTML headセクション解析</a>
-          <p class="pull-right"><a onClick="return popup(this);"  href="/auth/connect">ログイン</a></p>
+          <p class="pull-right" id="container-profile-status"><a onClick="return popup(this);"  href="/auth/connect">ログイン</a></p>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
         </footer>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
         <script src="/static/common/js/bootstrap-modal.js"></script>
-        <script src="http://platform.twitter.com/anywhere.js?id=fCSiKXoqwnrWjAWWaoS7MA&v=1" type="text/javascript">
+        <script src="/static/common/js/hh-auth.js"></script>
 [% footer_content %]
 
 <script>
@@ -24,7 +24,11 @@ function popup(a){
     login_window.focus();
     return false;
 }
+
+HHAUth.load();
+
 </script>
+
 
 
 </body>

@@ -7,4 +7,8 @@ return router {
         ->connect('callback', {action => 'callback'})
         ->connect('connect', {action => 'connect'});
 
+
+    submapper('/api/', {controller => 'API'})
+        ->connect('me', {action => 'me'});
+
 };

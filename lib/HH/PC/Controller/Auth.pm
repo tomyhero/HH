@@ -16,7 +16,7 @@ sub callback {
 
     eval {
         my $member = $c->model(  'TwitterAuth', { session => $session }  )->callback( $c->req->as_fdat );
-        $session->{member} = $member;
+        $session->set('twitter_user_id', $member->{twitter_user_id});
         $session->finalize();
     };
 
