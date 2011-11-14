@@ -27,6 +27,10 @@ function popup(a){
 
 HHAUth.load();
 
+function loadMe(){
+    HHAUth.load();
+}
+
 </script>
 
 

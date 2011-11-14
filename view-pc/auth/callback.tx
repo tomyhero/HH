@@ -5,6 +5,7 @@
 <body>
 処理中...
 <script>
+window.opener.loadMe();
 window.close();
 </script>
 </body>
