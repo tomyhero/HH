@@ -5,6 +5,7 @@ return router {
 
     submapper('/auth/', {controller => 'Auth'})
         ->connect('callback', {action => 'callback'})
+        ->connect('logout', {action => 'logout'})
         ->connect('connect', {action => 'connect'});
 
 

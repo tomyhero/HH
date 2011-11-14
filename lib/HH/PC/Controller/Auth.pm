@@ -2,6 +2,7 @@ package HH::PC::Controller::Auth;
 use Ze::Class;
 extends 'HH::WAF::Controller';
 with 'HH::Controller::Role::Session';
+use HH::Authorizer::Member;
 
 sub connect {
     my ($self,$c) = @_;
@@ -26,9 +27,13 @@ sub callback {
         warn Dumper $@;
         die 'AUTH_ERROR';
     }
+}
 
-
-
+sub logout {
+    my ($self,$c) = @_;
+    my $authorizer = HH::Authorizer::Member->new(c => $c);
+    $authorizer->logout();
+    $c->redirect('/');
 }
 
 EOC;
