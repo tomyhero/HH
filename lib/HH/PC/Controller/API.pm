@@ -1,7 +1,6 @@
 package HH::PC::Controller::API;
 use Ze::Class;
 extends 'HH::WAF::Controller';
-with 'HH::Controller::Role::Session';
 use HH::Authorizer::Member;
 
 sub me {
