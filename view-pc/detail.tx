@@ -6,6 +6,10 @@
       <div class="content span12">
           <h2><a href="[% c.args.url %]" target="_blnak">[% c.args.url %]</a></h2>
           <p>[% page.head.attributes.title.value || 'タイトルなし' %]</p>
+            <p>
+            <span class="label notice">作成日時 [% page.head.created_at %]</span>
+            <span class="label important">Version [% page.version %]</span>
+            </p>
 
            <div class="span12">
            <h3>利用タグ統計</h3>
@@ -34,21 +38,29 @@
            <table class="zebra-striped">
            <thead>
             <tr>
-              <th>#</th>
+              <th>&nbsp;</th>
               <th>アトリビュート</th>
               <th>値</th>
             </tr>
             </thead>
+            <tbody>
             [% FOREACH item IN page.head.attributes.meta  %]
               <tr>
-              <td rowspan="[% item.attr.keys().size()  %]">#[% loop.count %]</td>
+              <td rowspan="[% item.attr.keys().size()  %]">[% loop.count %]</td>
                 [% FOREACH attr IN item.attr.keys() %]
                 [% UNLESS loop.count == 1 %]<tr>[% END %]
                 <td>[% attr %]</td>
-                <td>[% item.attr.${attr} %]</td>
+                <td>
+                    [% IF match(item.attr.${attr},rx('\.(jpg|ico|gif|png)($|\?*)')) %]
+                        <img src="[% item.attr.${attr} %]" />
+                    [% ELSE %]
+                        [%  item.attr.${attr} %]
+                    [% END %]
+                </td>
                 </tr>
                 [% END %]
             [% END %]
+            </tbody>
             </table>
             </div>
             [% END %]
@@ -70,7 +82,14 @@
                 [% FOREACH attr IN item.attr.keys() %]
                 [% UNLESS loop.count == 1 %]<tr>[% END %]
                 <td>[% attr %]</td>
-                <td>[% item.attr.${attr} %]</td>
+
+                <td>
+                    [% IF match(item.attr.${attr},rx('\.(jpg|ico|gif|png)($|\?*)')) %]
+                        <img src="[% item.attr.${attr} %]" />
+                    [% ELSE %]
+                        [%  item.attr.${attr} %]
+                    [% END %]
+                </td>
                 </tr>
                 [% END %]
             [% END %]
@@ -95,7 +114,13 @@
                 [% FOREACH attr IN item.attr.keys() %]
                 [% UNLESS loop.count == 1 %]<tr>[% END %]
                 <td>[% attr %]</td>
-                <td>[% item.attr.${attr} %]</td>
+                <td>
+                    [% IF match(item.attr.${attr},rx('\.(jpg|ico|gif|png)($|\?*)')) %]
+                        <img src="[% item.attr.${attr} %]" />
+                    [% ELSE %]
+                        [%  item.attr.${attr} %]
+                    [% END %]
+                </td>
                 </tr>
                 [% END %]
             [% END %]
@@ -105,10 +130,6 @@
 
             <div class="span12">
             <h3>生headセクション</h3>
-            <p>
-            <span class="label important">Version</span> [% page.version %]
-            <span class="label notice">作成日時</span> [% page.head.created_at %] 
-            </p>
             <pre>[% page.head.head_html %]</pre>
             </div>
       </div>

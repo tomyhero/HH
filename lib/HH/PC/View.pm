@@ -10,7 +10,7 @@ sub _build_engine {
 
     return Ze::View->new(
         engines => [
-            { engine => 'Ze::View::Xslate' , config => { path => $path } }, 
+            { engine => 'Ze::View::Xslate' , config => { path => $path , module => ['Text::Xslate::Bridge::Star' ] } }, 
             { engine => 'Ze::View::JSON', config  => {} } 
         ]
     );
