@@ -51,7 +51,7 @@
                 [% UNLESS loop.count == 1 %]<tr>[% END %]
                 <td>[% attr %]</td>
                 <td>
-                    [% IF match(item.attr.${attr},rx('\.(jpg|ico|gif|png)($|\?*)')) %]
+                    [% IF match(item.attr.${attr},rx('^http.+\.(jpg|ico|gif|png)($|\?*)')) %]
                         <img src="[% item.attr.${attr} %]" />
                     [% ELSE %]
                         [%  item.attr.${attr} %]
@@ -71,20 +71,20 @@
            <table class="zebra-striped">
            <thead>
             <tr>
-              <th>#</th>
+              <th>&nbsp;</th>
               <th>アトリビュート</th>
               <th>値</th>
             </tr>
             </thead>
             [% FOREACH item IN page.head.attributes.link %]
               <tr>
-              <td rowspan="[% item.attr.keys().size()  %]">#[% loop.count %]</td>
+              <td rowspan="[% item.attr.keys().size()  %]">[% loop.count %]</td>
                 [% FOREACH attr IN item.attr.keys() %]
                 [% UNLESS loop.count == 1 %]<tr>[% END %]
                 <td>[% attr %]</td>
 
                 <td>
-                    [% IF match(item.attr.${attr},rx('\.(jpg|ico|gif|png)($|\?*)')) %]
+                    [% IF match(item.attr.${attr},rx('^http.+\.(jpg|ico|gif|png)($|\?*)')) %]
                         <img src="[% item.attr.${attr} %]" />
                     [% ELSE %]
                         [%  item.attr.${attr} %]
@@ -103,19 +103,19 @@
            <table class="zebra-striped">
            <thead>
             <tr>
-              <th>#</th>
+              <th>&nbsp;</th>
               <th>アトリビュート</th>
               <th>値</th>
             </tr>
             </thead>
             [% FOREACH item IN page.head.attributes.style %]
               <tr>
-              <td rowspan="[% item.attr.keys().size()  %]">#[% loop.count %]</td>
+              <td rowspan="[% item.attr.keys().size()  %]">[% loop.count %]</td>
                 [% FOREACH attr IN item.attr.keys() %]
                 [% UNLESS loop.count == 1 %]<tr>[% END %]
                 <td>[% attr %]</td>
                 <td>
-                    [% IF match(item.attr.${attr},rx('\.(jpg|ico|gif|png)($|\?*)')) %]
+                    [% IF match(item.attr.${attr},rx('^http.+\.(jpg|ico|gif|png)($|\?*)')) %]
                         <img src="[% item.attr.${attr} %]" />
                     [% ELSE %]
                         [%  item.attr.${attr} %]
@@ -140,6 +140,7 @@
             <input name="url" type="text" class="span5"> <input type="submit" value="解析" class="btn" />
           </form>
         </div>
+
        <div class="span8">
        <h3>新規解析URL</h3>
        <ul>
@@ -147,12 +148,79 @@
         <li><a href="/[% p.url | uri %]">[% p.url  %]</a></li>
        [% END %]
        </ul>
+       </div>
+       <div class="span8">
+       <h3>一言</h3>
+          <form method="post" id="form-message">
+            <input id="form-message-message_body" name="message_body" type="text" class="span5"> <input type="button" value="つぶやく" class="btn btn-form-message" />
+          </form>
 
-
+        <div id="container-messages"></div>
        </div>
 
     </div>
     </div>
     </div>
 
-[% INCLUDE 'footer.inc' %]
+<script type="text/html" id="tmpl_messages">
+<% for(var i = 0 ; i < items.length ; i++ ) { %>
+<% var item = items[i] ; %>
+<p><img style="vertical-align:middle;" width="24" height="24"  src="<%= item.member.icon_url %>" /><%= item.message_body %></p>
+<% } %>
+</script>
+
+[% MACRO footer_content_block  BLOCK -%]
+<script>
+
+
+function loadMessages(page_id){
+    $.ajax({
+        type: "GET",
+        url: "/api/message/list",
+            data : { 'page_id' : page_id },
+            dataType:"json",
+            success: function(json){
+                if(!json.error){
+                    $('#container-messages').html($('#tmpl_messages').template(json));
+                }
+            }
+        });
+}
+
+
+$(function(){
+
+    loadMessages([% page.page_id %]);
+
+    
+    $('.btn-form-message').click(function(){
+
+        var message_body = $('#form-message-message_body').val();
+        if(!message_body && message_body.length == 0 ){
+            alert('一言記載お願いします');
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/message/add",
+            data : { 'page_id' : [% page.page_id %], "message_body" : message_body , anticsrf_token : $.cookie('anticsrf_token') },
+            dataType:"json",
+            success: function(json){
+                if(!json.error){
+                    $('#form-message-message_body').val('');
+                    loadMessages([% page.page_id %]); 
+                }
+            }
+        });
+
+
+    });
+});
+
+</script>
+
+[% END -%]
+
+[% INCLUDE 'footer.inc' WITH
+    footer_content = footer_content_block()
+%]

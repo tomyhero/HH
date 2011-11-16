@@ -2,6 +2,7 @@ package HH::PC::Controller::API;
 use Ze::Class;
 extends 'HH::WAF::Controller';
 use HH::Authorizer::Member;
+with 'Ze::WAF::Controller::Role::JSON';
 
 sub me {
     my ($self,$c) = @_;

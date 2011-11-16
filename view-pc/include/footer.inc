@@ -3,6 +3,8 @@
 
         </footer>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script src="/static/common/js/jquery.cookie.js"></script>
+        <script src="/static/common/js/jquery.hh.js"></script>
         <script src="/static/common/js/bootstrap-modal.js"></script>
         <script src="/static/common/js/hh-auth.js"></script>
 [% footer_content %]
@@ -25,15 +27,23 @@ function popup(a){
     return false;
 }
 
-HHAUth.load();
 
 function loadMe(){
     HHAUth.load();
 }
 
+$(function(){
+    HHAUth.load();
+
+});
+
 </script>
 
-
+<script type="text/html" id="tmpl_profile_status">
+    <img style="vertical-align:middle;" src="<%= icon_url %>" width="24" height="24" />
+    <a href="http://twitter.com/<%= screen_name %>"><%= name %></a> 
+    <a href="/auth/logout">ログアウト</a>
+</script>
 
 </body>
 </html>

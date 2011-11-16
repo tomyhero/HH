@@ -12,7 +12,13 @@ sub EXCECUTE {
     }
     catch {
         if( ref $_ && ref $_ eq 'HH::Validator::Error') {
-            $c->stash->{error_obj} = $_;
+
+            if($c->view_type eq 'JSON') {
+                $c->set_json_error($_);
+            }
+            else {
+                $c->stash->{error_obj} = $_;
+            }
         }
         else {
             die $_; 

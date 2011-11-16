@@ -64,6 +64,11 @@ setting:
         rule: 
           - Number#uint
     strict:
+      message_body:
+        rule:
+          - String#length:
+              max: 140
+              min: 1
       url: 
         rule:
             - Net#url_loose

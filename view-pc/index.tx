@@ -12,7 +12,6 @@
 
 [% MACRO footer_content_block  BLOCK -%]
 <script>
-
 </script>
 [% END -%]
 

@@ -8,11 +8,7 @@ HHAUth = {
                 if(!json.error){
                     if(json.is_login){
 
-                    $('#container-profile-status').html( 
-                          '<img style="vertical-align:middle;" src="' + json.item.icon_url + '" width="24" height="24" /><a href="http://twitter.com/'
-                        + json.item.screen_name + '">'
-                        + json.item.name.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;')  + '</a> <a href="/auth/logout">ログアウト</a>'
-                    ) ;
+                        $('#container-profile-status').html( $('#tmpl_profile_status').template(json.item) );
 
                         if(typeof ready_authorizer == "function") {
                             ready_authorizer(true,json.item);
