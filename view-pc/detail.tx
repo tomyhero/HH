@@ -198,6 +198,7 @@ $(function(){
         var message_body = $('#form-message-message_body').val();
         if(!message_body && message_body.length == 0 ){
             alert('一言記載お願いします');
+            return;
         }
 
         $.ajax({
@@ -211,7 +212,7 @@ $(function(){
                     loadMessages([% page.page_id %]); 
                 }
                 else {
-                    alert('エラーです。文字数が多すぎたりしてるかも');
+                    alert('エラーです。認証してないか、文字数が多すぎたりしてるかも');
                 }
             }
         });
