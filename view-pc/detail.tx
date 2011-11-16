@@ -210,6 +210,9 @@ $(function(){
                     $('#form-message-message_body').val('');
                     loadMessages([% page.page_id %]); 
                 }
+                else {
+                    alert('エラーです。文字数が多すぎたりしてるかも');
+                }
             }
         });
 
