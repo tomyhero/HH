@@ -190,7 +190,6 @@ function loadMessages(page_id){
 
 $(function(){
 
-    console.log( $.cookie('anticsrf_token') );
     loadMessages([% page.page_id %]);
 
     
