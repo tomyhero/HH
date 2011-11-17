@@ -1,7 +1,7 @@
 return router {
-    submapper('/', {controller => 'Root' , page_cache => { expire => 60 } })
-        ->connect('', {action => 'index'})
-        ->connect('{url:https?://[-_.!~*\'()a-zA-Z0-9;/?:\@&=+\$,%#]+}', {action => 'detail', use_anticsrf => 1 }) ; 
+    submapper('/', {controller => 'Root'})
+        ->connect('', {action => 'index' ,  page_cache => { expire => 60 } })
+        ->connect('{url:https?://[-_.!~*\'()a-zA-Z0-9;/?:\@&=+\$,%#]+}', {action => 'detail', use_anticsrf => 1 , page_cache => { expire => 60 } }) ;
 
     submapper('/auth/', {controller => 'Auth'})
         ->connect('callback', {action => 'callback'})
