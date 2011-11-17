@@ -1,5 +1,5 @@
 return router {
-    submapper('/', {controller => 'Root'})
+    submapper('/', {controller => 'Root' , page_cache => { expire => 60 } })
         ->connect('', {action => 'index'})
         ->connect('{url:https?://[-_.!~*\'()a-zA-Z0-9;/?:\@&=+\$,%#]+}', {action => 'detail', use_anticsrf => 1 }) ; 
 

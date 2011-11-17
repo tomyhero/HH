@@ -1,8 +1,13 @@
 package HH::WAF::Context;
 use Ze::Class;
+use HH::Util;
 extends 'Ze::WAF::Context';
 
 
+after 'INITIALIZE' => sub {
+    my $c = shift;
+    $c->stash->{requiest_datetime_obj} = HH::Util::now();
+};
 
 my $MODELS ;
 BEGIN {

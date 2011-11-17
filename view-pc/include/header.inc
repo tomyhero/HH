@@ -19,6 +19,8 @@ body {
 }
 </style>
 
+<meta name="generated" content="[% requiest_datetime_obj %]" />
+
 </head>
 <body>
     <div class="topbar">
