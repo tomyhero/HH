@@ -9,6 +9,9 @@ use Plack::Builder;
 use HH::PC;
 use HH::Home;
 
+use HH::Validator;
+HH::Validator->instance(); # compile.
+
 my $home = HH::Home->get;
 
 my $webapp = HH::PC->new;
