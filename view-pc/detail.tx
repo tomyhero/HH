@@ -152,7 +152,7 @@
        <div class="span8">
        <h3>一言</h3>
           <form method="post" id="form-message">
-            <input id="form-message-message_body" name="message_body" type="text" class="span5"> <input type="button" value="つぶやく" class="btn btn-form-message" />
+            <input id="form-message-message_body" name="message_body" type="text" class="span5"> <input type="submit" value="つぶやく" class="btn btn-form-message" />
           </form>
 
         <div id="container-messages"></div>
